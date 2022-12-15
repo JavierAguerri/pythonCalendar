@@ -1,4 +1,5 @@
 import calendarModule as calendar
+import calendarUnitTesting as calendarUT
 
 def menuInput():
     print('Pick an option:')
@@ -31,8 +32,10 @@ def menu():
         else:
             option = int(optionInput)
             #print (f'option is of type {type(option)}')
-            print (f'You have chosen option {option}')
+            #print (f'You have chosen option {option}')
             calendar.functionsList[option-1]()
             print('')
 
-menu()
+#menu()
+calendarUT.calendarTests()
+calendarUT.inputValidationDatesTests()
