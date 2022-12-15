@@ -1,4 +1,5 @@
 import calendarDateValidation as dateValidation
+import calendarPrint as calendarPrint
 
 def exit():
     print('Exit the program.')
@@ -54,7 +55,7 @@ def getWeekdayName(dayCode):
 def weekday():
     print('Print the week day for a certain date.')
     dateInput = input('Input the date. Use format: YYYY/MM/DD: ')
-    while not dateValidation.isValidDateInput(dateInput):
+    while not dateValidation.isValidDateInput(dateInput,3):
         print ('Invalid entry. Please input a valid date from 1900/01/01 onwards.')
         dateInput = input('Input the date. Use format: YYYY/MM/DD: ')
     # get day, month, year variables as int from the input string
@@ -67,9 +68,26 @@ def weekday():
     print(f'On date {dateInput} it was (or it will be) {weekdayName} ')
     
 def monthly():
-    print('Print the monthly calendar for a certain year.')
+    print('Print the calendar for a specific month and year.')
+    dateInput = input('Input the date. Use format: YYYY/MM: ')
+    while not dateValidation.isValidDateInput(dateInput,2):
+        print ('Invalid entry. Please input a valid date from 1900/01 onwards.')
+        dateInput = input('Input the date. Use format: YYYY/MM: ')
+    dateInputArr = dateInput.split('/')
+    year = int(dateInputArr[0])
+    month = int(dateInputArr[1])
+    diffFromMonday = getDiffFromMonday(year,month,1)
+    calendarPrint.printMonth(year,month,diffFromMonday,daysInMonth(month,year))
 
 def yearly():
-    print('Print the yearly calendar for a certain year.')  
+    print('Print the calendar for a specific year.')  
+    dateInput = input('Input the year. Use format: YYYY: ')
+    while not dateValidation.isValidDateInput(dateInput,1):
+        print ('Invalid entry. Please input a valid year from 1900 onwards.')
+        dateInput = input('Input the year. Use format: YYYY: ')
+    year = int(dateInput)
+    for m in range(1,13):
+        diffFromMonday = getDiffFromMonday(year,m,1)
+        calendarPrint.printMonth(year,m,diffFromMonday,daysInMonth(m,year))
     
 functionsList = [yearly,monthly,weekday,exit]

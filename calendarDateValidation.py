@@ -45,16 +45,18 @@ def isValidYear(year):
         return False
     return True
 
-def isValidDateInput(dateInput):
+def isValidDateInput(dateInput,items):
     dateInputArr = dateInput.split('/')
     #print(f'dateInputArr: {dateInputArr}')
-    if len(dateInputArr) != 3:
+    if len(dateInputArr) != items:
         return False
     if not isValidYear(dateInputArr[0]):
         return False
-    if not isValidMonth(dateInputArr[1]):
-        return False
-    # yearn and month are checked at this point so we can int() them
-    if not isValidDay(int(dateInputArr[0]),int(dateInputArr[1]),dateInputArr[2]):
-        return False
+    if items >=2:
+        if not isValidMonth(dateInputArr[1]):
+            return False
+    if items >=3:
+        # year and month are checked at this point so we can int() them
+        if not isValidDay(int(dateInputArr[0]),int(dateInputArr[1]),dateInputArr[2]):
+            return False
     return True

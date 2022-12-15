@@ -36,6 +36,8 @@ def menu():
             calendar.functionsList[option-1]()
             print('')
 
-#menu()
-calendarUT.calendarTests()
-calendarUT.inputValidationDatesTests()
+menu()
+#calendarUT.calendarTests()
+#calendarUT.inputValidationDatesTests_n3()
+#calendarUT.inputValidationDatesTests_n2()
+#calendarUT.inputValidationDatesTests_n1()

@@ -140,10 +140,10 @@ def calendarTests():
     print(f'Number of tests executed: {nTests}')
     print(f'Number of tests passed: {nPassed}')
     
-def isValidDateInput(date,expected):
+def isValidDateInput(date,items,expected):
     passed = True
     print(f'test for isValidDateInput - date: {date}')
-    result = dateValidation.isValidDateInput(date)
+    result = dateValidation.isValidDateInput(date,items)
     resultStr = ''
     if (result != expected):
         resultStr = '** NOT ** '
@@ -152,12 +152,10 @@ def isValidDateInput(date,expected):
     print('')
     return passed
 
-def inputValidationDatesTests():
+def inputValidationDatesTests_n3():
     nTests = 0
     nPassed = 0
-    
-    # isValidDateInput
-    
+        
     # negatives
     negTests = [
         '',
@@ -180,12 +178,13 @@ def inputValidationDatesTests():
         '2000/-3/12',
         '2000/ad/10',
         '21,0/ad/10',
-        '1900/02/29'     
+        '1900/02/29',
+        '1988/11'     
     ]    
     
     for d in negTests:
         nTests = nTests + 1
-        if isValidDateInput(d,False):
+        if isValidDateInput(d,3,False):
             nPassed = nPassed + 1           
     
     # positives
@@ -199,7 +198,96 @@ def inputValidationDatesTests():
     
     for d in posTests:
         nTests = nTests + 1
-        if isValidDateInput(d,True):
+        if isValidDateInput(d,3,True):
+            nPassed = nPassed + 1
+            
+    # final count
+    print(f'Number of tests executed: {nTests}')
+    print(f'Number of tests passed: {nPassed}')
+    
+def inputValidationDatesTests_n2():
+    nTests = 0
+    nPassed = 0
+    
+    # negatives
+    negTests = [
+        '',
+        '2050/0',
+        '2000/',
+        '1999',
+        '0515/02',
+        '1888/10',
+        '/02',
+        'asdf/12',
+        '19.5/o1',
+        '2000/13',
+        '2000/00',
+        '2000/110',
+        '2000/05.',
+        ',2000/05',
+        '2000//10'
+    ]    
+    
+    for d in negTests:
+        nTests = nTests + 1
+        if isValidDateInput(d,2,False):
+            nPassed = nPassed + 1           
+    
+    # positives
+    posTests = [
+        '1900/01',
+        '1999/12',
+        '2000/02',
+        '9999/09'
+    ]
+    
+    for d in posTests:
+        nTests = nTests + 1
+        if isValidDateInput(d,2,True):
+            nPassed = nPassed + 1
+            
+    # final count
+    print(f'Number of tests executed: {nTests}')
+    print(f'Number of tests passed: {nPassed}')
+    
+def inputValidationDatesTests_n1():
+    nTests = 0
+    nPassed = 0
+    
+    # negatives
+    negTests = [
+        '',
+        '205',
+        '2000/',
+        '1999/02',
+        '2020/03/10'
+        '0515',
+        '/2009',
+        'asdf',
+        '19.5',
+        '2000h',
+        '1899',
+        '0000',
+        ',2000',
+        '2000//'
+    ]    
+    
+    for d in negTests:
+        nTests = nTests + 1
+        if isValidDateInput(d,1,False):
+            nPassed = nPassed + 1           
+    
+    # positives
+    posTests = [
+        '1900',
+        '1999',
+        '2000',
+        '9999'
+    ]
+    
+    for d in posTests:
+        nTests = nTests + 1
+        if isValidDateInput(d,1,True):
             nPassed = nPassed + 1
             
     # final count
